@@ -8,12 +8,16 @@ shinyServer(function(input, output, session) {
   
   datasetInput <- reactive({
     if (is.null(input$hot)) {
-      mat <- data.frame('X'= round(c(rep(NA, 10)), digits = 2),
-                        'Y'= round(c(rep(NA, 10)), digits = 2))
+      mat <- data.frame('X'= round(c(rep(NA, 2)), digits = 2),
+                        'Y'= round(c(rep(NA, 2)), digits = 2))
     } else {
       mat <- hot_to_r(input$hot)
     }
   })
+  
+  output$sens <- renderText(
+    as.character(datasetInput$X[1]/(datasetInput$X[1]+datasetInput$X[2]))
+  )
   
   output$plot1 <- renderPlot({
     

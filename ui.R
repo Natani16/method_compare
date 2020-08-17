@@ -14,6 +14,7 @@ dashboardPage(
       menuItem("Data", tabName = "data", 
                icon = icon("table", "fa-lg")
                ),
+      menuItem("Sens and Spec", tabName = "test"),
       menuItem("Plots", tabName = "plots",
                icon = icon("line-chart", "fa-lg"),
                menuSubItem("Scatter Plot", tabName = "subitem2"),
@@ -30,7 +31,8 @@ dashboardPage(
   ),
   dashboardBody(
     tabItems(
-      tabItem(tabName = "info",
+      #info
+      {tabItem(tabName = "info",
               h2("Method Comparison and Bias Estimation Using R and Shiny"),
               br(),
               h4('This website is a product of R programming language(1) and shiny(2) web application framework. Statistics are based on mcr package(3). Shinydashboard(4), rhandsontable(5) and pander(6) are used for website construction. Rmarkdown(7) is used for converting results into document files.'),
@@ -68,11 +70,16 @@ dashboardPage(
               br(),
               h4('For any questions or concerns please contact:', 
                  a("Burak Bahar, MD", href = "mailto:burakbaharmd@gmail.com"))
-              ),
+              )},
       tabItem(tabName = "data",
+
               box(title = "Enter Data", status = 'info',
+                  h4("Method Compare"),
+                  h5("X and Y are the true positive and negative values repectively, while 1 and 2 are the positive and negative test values repectively."),
                   rHandsontableOutput("hot")
+                  
                   ),
+
               box(title = 'Enter Method Names', status = 'info',
                   textInput('m1', label = h4('X'),
                             value = 'Reference Method'),
@@ -80,6 +87,20 @@ dashboardPage(
                             value = 'Test Method')
                   )
       ),
+      
+
+      tabItem(tabName = "test",
+                box(title = "Output",h4("Test to see if tab shows")
+                    #, 
+                    #textOutput(outputId = "sens")
+                    )
+                
+              
+              
+      ),
+
+
+      #unused tabs
       tabItem(tabName = "subitem1",
               box(title = "Bland-Altman Plot", status = 'info', width = 8,
                   plotOutput("plot1")
