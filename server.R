@@ -8,9 +8,40 @@ shinyServer(function(input, output, session) {
   
   datasetInput <- reactive({
     # Statistical results should appear here
+    
   })
-
-
+  output$specif <- reactive({
+    
+  })
+  output$sens <- reactive({
+    
+  })
+  
+  
+  
+  #Calculates the totals of each row and the table
+  {
+  #Total positive candidate tests
+  output$totposcand <- renderText({
+        input$TP + input$FP
+  })
+  #Total negative candidate tests
+  output$totnegcand <- renderText({
+    input$TN + input$FN
+  })
+  #Total positive comparative tests
+  output$totposcomp <- renderText({
+    input$TP + input$FN
+  })
+  #Total negative comparative tests
+  output$totnegcomp <- renderText({
+    input$TN + input$FP
+  })
+  #Total tests
+  output$tottest <- renderText({
+    input$TP + input$FP + input$TN + input$FN
+  })
+  }
 
   output$downloadReport <- downloadHandler(
     filename = function() {

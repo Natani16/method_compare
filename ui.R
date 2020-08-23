@@ -49,16 +49,35 @@ dashboardPage(
               )},
       tabItem(tabName = "data",
 
-              # You should turn this part to a 2x2 table instead of 4 rows
-
-              box(title = "Enter Data", status = 'info',
-                  h4("Comparative method:"),
-                  numericInput(inputId = "pos_tests_met", label = "Enter the number of positive tests from the comparitive method:", value = NA),
-                  numericInput(inputId = "neg_tests_met", label = "Enter the number of negative tests from the comparative method:", value = NA),
-                  h4("Method being tested:"),
-                  numericInput(inputId = "pos_tests_test", label = "Enter the number of positive tests from the method being tested:", value = NA),
-                  numericInput(inputId = "neg_tests_test", label = "Enter the number of negative tests from the method being tested:", value = NA),
+              box(title = "Contingency Calculator", width= 10, status = 'info',
                   
+                  #Row 1 houses 'comparative method' text
+                  fluidRow(
+                    column(width = 6, offset = 3, h4(tags$strong("Comparitive method")))
+                  ),
+                  #Row 2 houses 'candidate method', 'pos'., 'neg'., and 'tot.'
+                  fluidRow(
+                    column(3, h4(tags$strong(("Candidate Method")))),
+                    column(3, h4("Positive")),
+                    column(3, h4("Negative")),
+                    column(3, h4(tags$em("Total")))),
+                  #Row 3
+                  fluidRow(
+                    column(3, h4("Positive")),
+                    column(3, numericInput(inputId = "TP", label = NULL, value = NULL)),
+                    column(3, numericInput(inputId = "FP", label = NULL, value = NULL)),
+                    column(3, verbatimTextOutput("totposcand"))),
+                  #Row 4
+                  fluidRow(
+                    column(3, h4("Negative")),
+                    column(3, numericInput(inputId = "FN", label = NULL, value = NULL)),
+                    column(3, numericInput(inputId = "TN", label = NULL, value = NULL)),
+                    column(3, verbatimTextOutput("totnegcand"))),
+                  fluidRow(
+                    column(3, h4(tags$em("Total"))),
+                    column(3, verbatimTextOutput("totposcomp")),
+                    column(3, verbatimTextOutput("totnegcomp")),
+                    column(3, verbatimTextOutput("tottest")))
                   ),
 
 
@@ -66,7 +85,7 @@ dashboardPage(
       
 
       tabItem(tabName = "test",
-                box(title = "Output",h4("Test to see if tab shows"), verbatimTextOutput("sensitivity"))
+                box(title = "Output", width= 10, h4("Test to see if tab shows"))
                 
               
               
