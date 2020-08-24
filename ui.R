@@ -92,23 +92,23 @@ dashboardPage(
                   #Row 2
                   fluidRow(
                     column(width = 5, h4("Positive agreement/Sensitivity")),
-                    column(width = 2, verbatimTextOutput("sens"))
-                    #column(width = 3, h4("Lo Limit")),
-                    #column(width = 3, h4("Hi Limit"))
+                    column(width = 2, verbatimTextOutput("sens")),
+                    column(width = 2, verbatimTextOutput("sens_lo")),
+                    column(width = 2, verbatimTextOutput("sens_hi"))
                   ),
                   #Row 3
                   fluidRow(
                     column(width = 5, h4("Negative agreement/Specificity")),
-                    column(width = 2, verbatimTextOutput("spec"))
-                    #column(width = 3, h4("Lo Limit")),
-                    #column(width = 3, h4("Hi Limit"))
+                    column(width = 2, verbatimTextOutput("spec")),
+                    column(width = 2, verbatimTextOutput("spec_lo")),
+                    column(width = 2, verbatimTextOutput("spec_hi"))
                   ),
                   #Row 4
                   fluidRow(
                     column(width = 5, h4("Overall agreement")),
-                    column(width = 2, verbatimTextOutput("overall"))
-                    #column(width = 3, h4("Lo Limit")),
-                    #column(width = 3, h4("Hi Limit"))
+                    column(width = 2, verbatimTextOutput("overall")),
+                    column(width = 2, verbatimTextOutput("overall_lo")),
+                    column(width = 2, verbatimTextOutput("overall_hi"))
                   )
                 )
       ),
