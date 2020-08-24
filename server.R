@@ -10,13 +10,28 @@ shinyServer(function(input, output, session) {
     # Statistical results should appear here
     
   })
-  output$specif <- reactive({
-    
+
+  #Functions to return sens, spec, and overall agreement.  These are functions b/c they will be used later multiple times
+  sens <- reactive({
+    round((input$TP / (input$TP + input$FN))*100, digits = 2)
   })
-  output$sens <- reactive({
-    
+  spec <- reactive({
+    round((input$TN / (input$TN + input$FP))*100, digits = 2)
+  })
+  overall <- reactive({
+    round((sens()+spec())/2, digits = 2)
   })
   
+  #text output for sens, spec, and overall agreement
+  output$sens <- renderText({
+    paste(sens(), "%", sep = "")
+  })
+  output$spec <- renderText({
+    paste(spec(), "%", sep = "")
+  })
+  output$overall <- renderText({
+    paste(overall(), "%", sep = "")
+  })
   
   
   #Calculates the totals of each row and the table

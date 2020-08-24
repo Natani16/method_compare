@@ -11,10 +11,10 @@ dashboardPage(
       menuItem("Information", tabName = "info", 
                icon = icon("info", "fa-lg")
                ),
-      menuItem("Data", tabName = "data", 
+      menuItem("Data", tabName = "data_input", 
                icon = icon("table", "fa-lg")
                ),
-      menuItem("Sens and Spec", tabName = "test",
+      menuItem("Sens and Spec", tabName = "sensandspec",
                icon = icon("calculator", "fa-lg")),
       menuItem("Download", tabName = "download",
                icon = icon("download", "fa-lg")
@@ -47,7 +47,7 @@ dashboardPage(
               h4('For any questions or concerns please contact:', 
                  a("Burak Bahar, MD", href = "mailto:burakbaharmd@gmail.com"))
               )},
-      tabItem(tabName = "data",
+      tabItem(tabName = "data_input",
 
               box(title = "Contingency Calculator", width= 10, status = 'info',
                   
@@ -66,29 +66,51 @@ dashboardPage(
                     column(3, h4("Positive")),
                     column(3, numericInput(inputId = "TP", label = NULL, value = NULL)),
                     column(3, numericInput(inputId = "FP", label = NULL, value = NULL)),
-                    column(3, verbatimTextOutput("totposcand"))),
+                    column(3, textOutput("totposcand"))),
                   #Row 4
                   fluidRow(
                     column(3, h4("Negative")),
                     column(3, numericInput(inputId = "FN", label = NULL, value = NULL)),
                     column(3, numericInput(inputId = "TN", label = NULL, value = NULL)),
-                    column(3, verbatimTextOutput("totnegcand"))),
+                    column(3, textOutput("totnegcand"))),
+                  #Row 5
                   fluidRow(
                     column(3, h4(tags$em("Total"))),
-                    column(3, verbatimTextOutput("totposcomp")),
-                    column(3, verbatimTextOutput("totnegcomp")),
-                    column(3, verbatimTextOutput("tottest")))
-                  ),
-
-
+                    column(3, textOutput("totposcomp")),
+                    column(3, textOutput("totnegcomp")),
+                    column(3, textOutput("tottest")))
+                  )
       ),
-      
-
-      tabItem(tabName = "test",
-                box(title = "Output", width= 10, h4("Test to see if tab shows"))
-                
-              
-              
+      tabItem(tabName = "sensandspec",
+                box(title = "Output", width= 10,
+                  #Row 1
+                  fluidRow(
+                    column(width = 2, offset = 5, h4("Percent")),
+                    column(width = 2, h4("Lo Limit")),
+                    column(width = 2, h4("Hi Limit"))
+                  ),
+                  #Row 2
+                  fluidRow(
+                    column(width = 5, h4("Positive agreement/Sensitivity")),
+                    column(width = 2, verbatimTextOutput("sens"))
+                    #column(width = 3, h4("Lo Limit")),
+                    #column(width = 3, h4("Hi Limit"))
+                  ),
+                  #Row 3
+                  fluidRow(
+                    column(width = 5, h4("Negative agreement/Specificity")),
+                    column(width = 2, verbatimTextOutput("spec"))
+                    #column(width = 3, h4("Lo Limit")),
+                    #column(width = 3, h4("Hi Limit"))
+                  ),
+                  #Row 4
+                  fluidRow(
+                    column(width = 5, h4("Overall agreement")),
+                    column(width = 2, verbatimTextOutput("overall"))
+                    #column(width = 3, h4("Lo Limit")),
+                    #column(width = 3, h4("Hi Limit"))
+                  )
+                )
       ),
       tabItem(tabName = "download",
               box(title = "Download Report", status = 'info',
